@@ -1,10 +1,4 @@
 const checkForError = (input) => {
-<<<<<<< HEAD
-
-}
-
-export default checkForError
-=======
     const res = { payload: null, status: null }
 
     // If the response is not an error return 200 status and the payload
@@ -27,4 +21,3 @@ export default checkForError
 export {
     checkForError
 }
->>>>>>> dev
