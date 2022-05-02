@@ -9,8 +9,8 @@ router.post('/', async (req, res) => {
     res.status(response.status).send(response)
 })
 
-router.get('/:username', (req, res) => {
-    const response = getUserByUsername(req.params.username)
+router.get('/:username', async (req, res) => {
+    const response = await getUserByUsername(req.params.username)
     res.send(response)
 })
 

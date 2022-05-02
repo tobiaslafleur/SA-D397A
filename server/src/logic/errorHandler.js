@@ -1,5 +1,5 @@
 const checkForError = (input) => {
-    const res = { payload: null, status: null }
+    const res = { payload: input, status: 200 }
 
     // If the response is not an error return 200 status and the payload
     if (!input instanceof Error) {
@@ -12,8 +12,6 @@ const checkForError = (input) => {
         res.payload = 'Email or Username is already in use!'
         res.status = 400
     }
-
-    console.log(input)
 
     return res
 }
