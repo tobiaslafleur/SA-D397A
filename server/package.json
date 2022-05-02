@@ -9,6 +9,7 @@
   "author": "Sys",
   "license": "ISC",
   "dependencies": {
+    "argon2": "^0.28.5",
     "cors": "^2.8.5",
 <<<<<<< HEAD
 =======
