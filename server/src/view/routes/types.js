@@ -15,4 +15,14 @@ router.post('/', async (req, res) => {
     res.send(response)
 })
 
+// Add subscriber to specific type
+router.patch('/:id', async (req, res) => {
+    res.send('Trying to add sub')
+})
+
+// Remove subscriber from specific type
+router.patch('/:id', async (req, res) => {
+    res.send('Trying to remve sub')
+})
+
 export default router
