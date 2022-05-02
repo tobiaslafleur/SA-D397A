@@ -1,0 +1,6 @@
+POST http://localhost:3000/api/types/
+Content-Type: application/json
+
+{
+    "name": "iPhone"
+}
