@@ -7,9 +7,9 @@ const productSchema = new Schema({
         type: String,
         required: true
     },
-    // --------- Type ska ändras ---------
+    // --------- Type ska ändras? ---------
     type: {
-        type: String,
+        type: [String],
         required: true
     },
     price: {
