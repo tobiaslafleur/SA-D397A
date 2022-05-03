@@ -7,6 +7,7 @@ const productSchema = new Schema({
         type: String,
         required: true
     },
+    // --------- Type ska ändras ---------
     type: {
         type: String,
         required: true
@@ -28,6 +29,7 @@ const productSchema = new Schema({
     status: {
         type: String
     },
+    // ------ Ska seller vara något annat än String? ------
     seller: {
         type: String,
         required: true

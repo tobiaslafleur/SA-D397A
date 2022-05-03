@@ -5,6 +5,8 @@ import {    createProductData,
             getProductsByPriceData, 
             getProductsByConditionData} from '../data/product.data.js'
 
+
+// Behöver egen errorhandling ig
 const createProduct = async (body) => {
     const res = await createProductData(body)
     return checkForError(res)
