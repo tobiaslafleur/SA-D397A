@@ -20,8 +20,8 @@ const getProductsBytype = (type) => {
     return getProductsByTypeData(type)
 }
 
-const getProductsByPrice = (maxPrice, minPrice) => {
-    return getProductsByPriceData(maxPrice, minPrice)
+const getProductsByPrice = (minPrice, maxPrice) => {
+    return getProductsByPriceData(minPrice, maxPrice)
 }
 
 const getProductsByCondition = (condition) => {

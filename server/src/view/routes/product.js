@@ -27,7 +27,7 @@ router.get('/type/:type', async (req, res) => {
 
 // Search for products by price range
 router.get('/price/:min/:max', async (req, res) => {
-    const response = await getProductsByPrice(req.params.minPrice, req.params.maxPrice)
+    const response = await getProductsByPrice(req.params.min, req.params.max)
     res.send(response)
 })
 

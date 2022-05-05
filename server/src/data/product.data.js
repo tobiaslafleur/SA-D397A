@@ -24,7 +24,11 @@ const createProductData = async (body) => {
 }
 
 const getProductsByNameData = async (name) => {
-    const product = await productModel.find({ name })
+    const product = await productModel.find({ 
+        name: {
+            $regex : name,
+            $options : "i"
+        }})
 
     return product
 }
@@ -35,10 +39,10 @@ const getProductsByTypeData = async (type) => {
     return product
 }
 
-const getProductsByPriceData = async (maxPrice, minPrice) => {
+const getProductsByPriceData = async (minPrice, maxPrice) => {
     const product = await productModel.find({
-        price: { $lte: maxPrice},
-        price: { $gte: minPrice},
+        price: {    $lte: maxPrice,
+                    $gte: minPrice}
     })
 
     return product
