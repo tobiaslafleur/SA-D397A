@@ -1,5 +1,4 @@
 import express from 'express'
-
 import user from './user.js'
 import auth from './auth.js'
 import types from './types.js'

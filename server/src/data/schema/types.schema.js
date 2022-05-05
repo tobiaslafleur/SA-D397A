@@ -8,7 +8,7 @@ const typesSchema = new Schema({
       required: true
   },
   subscribers: {
-    tags: [{
+    type: [{
             type: String
         }]
     }

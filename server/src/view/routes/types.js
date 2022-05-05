@@ -1,6 +1,6 @@
 import express from 'express'
 
-import { createNewType } from '../../logic/types.logic.js' // logik import
+import { createNewType, newSubscriber, removeSubscriber } from '../../logic/types.logic.js' // logik import
 
 const router = express.Router()
 
@@ -17,12 +17,15 @@ router.post('/', async (req, res) => {
 
 // Add subscriber to specific type
 router.patch('/:id', async (req, res) => {
-    res.send('Trying to add sub')
+    const response = await newSubscriber(req.body)
+    res.send(response)
+
 })
 
 // Remove subscriber from specific type
-router.patch('/:id', async (req, res) => {
-    res.send('Trying to remve sub')
+router.delete('/:id', async (req, res) => {
+    const response = await removeSubscriber(req.body)
+    res.send(response)
 })
 
 export default router

@@ -1,35 +1,23 @@
 import { checkForError } from './errorHandler.js'
-import { createType } from '../data/types.data.js'
+import { createType, newSub, removeSub } from '../data/types.data.js'
 
 const createNewType = async (body) => {
     const res = await createType(body)
     return res
 }
 
-// Oklart om korrekt --> https://kb.objectrocket.com/mongo-db/how-to-add-elements-into-an-array-in-mongodb-1195
-const addSubscriber = async (newSub) => {
-    const subscriber = findOne.user(newSub)
+const newSubscriber = async (body) => {
+    const res = await newSub(body)
+    return res
+}
 
-    const newType = typeModel(
-        {"_id": "100"},
-        {
-            $push: {
-                subscribers: {
-                    $each: [subscriber],
-                    $position: -1
-                }
-            }
-        }
-    )
-
-    try {
-        await newSub
-    } catch (error) {
-        
-    }
+const removeSubscriber = async (body) => {
+    const res = await removeSub(body)
+    return res
 }
 
 export {
     createNewType,
-    addSubscriber
+    newSubscriber,
+    removeSubscriber
 }

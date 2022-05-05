@@ -2,6 +2,28 @@ POST http://localhost:3000/api/types/
 Content-Type: application/json
 
 {
-    "name": "iPhone"
+    "name": "Macbook",
+    "subscribers": "username2"
 }
 
+###
+
+PATCH http://localhost:3000/api/types/6273b5e875c3010b8c991b5a
+Content-Type: application/json
+
+{
+    "_id": "6273b5e875c3010b8c991b5a",
+    "name": "Macbook",
+    "subscribers": "username3"
+}
+
+###
+
+DELETE http://localhost:3000/api/types/627392df7de005040542cc35
+Content-Type: application/json
+
+{
+    "_id": "6273b5e875c3010b8c991b5a",
+    "name": "Macbook",
+    "subscribers": "username3"
+}
