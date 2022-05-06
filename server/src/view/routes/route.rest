@@ -27,3 +27,29 @@ Content-Type: application/json
     "name": "Macbook",
     "subscribers": "username3"
 }
+
+###
+
+POST http://localhost:3000/api/order/
+Content-Type: application/json
+
+{
+    "seller": "Fisk-AB",
+    "buyer": "lille-lu",
+    "product": "Gädda",
+    "status": "sold"
+}
+
+###
+
+POST http://localhost:3000/api/user/
+Content-Type: application/json
+
+{
+    "firstName": "Lucas",
+    "lastName": "Eliasson",
+    "email": "lucas@lucaseliasson.se",
+    "address": "Hallarydsvägen",
+    "username": "lille-lu",
+    "password": "12345"
+}
