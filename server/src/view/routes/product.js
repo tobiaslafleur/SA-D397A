@@ -1,10 +1,13 @@
 import express from 'express'
 
-import { createProduct,
+import {
+    createProduct,
     getProductsByName,
     getProductsBytype,
     getProductsByPrice,
-    getProductsByCondition } from '../../logic/product.logic.js'
+    getProductsByCondition,
+    getAllProducts
+} from '../../logic/product.logic.js'
 
 const router = express.Router()
 
@@ -34,6 +37,11 @@ router.get('/price/:min/:max', async (req, res) => {
 // Search for products by condition
 router.get('/condition/:condition', async (req, res) => {
     const response = await getProductsByCondition(req.params.condition)
+    res.send(response)
+})
+
+router.get('/', async (req, res) => {
+    const response = await getAllProducts()
     res.send(response)
 })
 

@@ -1,9 +1,12 @@
 import { checkForError } from './errorHandler.js'
-import {    createProductData, 
-            getProductsByNameData, 
-            getProductsByTypeData, 
-            getProductsByPriceData, 
-            getProductsByConditionData} from '../data/product.data.js'
+import {
+    createProductData,
+    getProductsByNameData,
+    getProductsByTypeData,
+    getProductsByPriceData,
+    getProductsByConditionData,
+    getAllProductsData
+} from '../data/product.data.js'
 
 
 // Behöver egen errorhandling ig
@@ -28,10 +31,15 @@ const getProductsByCondition = (condition) => {
     return getProductsByConditionData(condition)
 }
 
+const getAllProducts = () => {
+    return getAllProductsData()
+}
+
 export {
     createProduct,
     getProductsByName,
     getProductsBytype,
     getProductsByPrice,
-    getProductsByCondition
+    getProductsByCondition,
+    getAllProducts
 }

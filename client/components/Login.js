@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import styles from '../../styles/Login.module.css'
+import styles from '../styles/Login.module.css'
 export default function Login(props) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -19,16 +19,16 @@ export default function Login(props) {
             },
             body: JSON.stringify(data)
         })
-        
+
         const result = await response.json()
-        if(result.auth) {
+        if (result.auth) {
             setUser(result.user)
             setLogin(true)
 
         } else setHidden(false)
     }
 
-    return ( 
+    return (
         <div className={styles.container}>
             <h1 className={styles.title}>Log in</h1>
             <div className={styles.infocontainer}>
