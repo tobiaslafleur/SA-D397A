@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+.fade {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: auto;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #313131;
+    border-radius: 16px;
+    padding: 32px;
+    animation: fade-in-keyframes 1s;
+}
+
+@keyframes fade-in-keyframes {
+    from {opacity: 1}
+    to {opacity: 0}
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: auto;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #313131;
+    border-radius: 16px;
+    padding: 32px;
+}
+
+.infocontainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 16px;
+}
+
+.loginb {
+    background-color: #03dac6;
+    border: none;
+    color: #121212;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 200px;
+    border-radius: 16px;
+    font-family: Quicksand;
+    font-weight: 700;
+    transition:0.25s ease-in;
+    margin: 16px;
+}
+
+.signupb {
+    background-color: #121212;
+    border: none;
+    color: white;
+    padding: 8px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 16px;
+    font-family: Quicksand;
+    font-weight: 700;
+    transition:0.25s ease-in;
+    margin: 16px;
+}
+
+.loginb:hover {
+    transform: scale(95%);
+}
+
+.title {
+    color: white;
+    margin: 16px;
+}
+
+.info {
+    color: white;
+}
+
+.input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border-width: 2px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 16px;
+    background-color: transparent;
+    color: white;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.error {
+    color: #CF6679
+}
+
