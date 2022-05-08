@@ -5,12 +5,12 @@ const createProductData = async (body) => {
     try {
         const product = productModel({
             name: body.name,
-            type: body.type,
+            types: body.type,
             price: body.price,
             manufactured: body.manufactured,
             color: body.color,
             condition: body.condition,
-            status: body.status,
+            status: 'Available',
             seller: body.seller
         })
 

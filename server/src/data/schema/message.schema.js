@@ -4,7 +4,8 @@ const { Schema } = mongoose
 
 const messageSchema = new Schema({
     receiver: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'user',
         required: true
     },
     messageRead: {
@@ -16,7 +17,8 @@ const messageSchema = new Schema({
         required: true
     },
     product: {
-        type: String, // Product _id
+        type: Schema.Types.ObjectId,
+        ref: 'product',
         required: true
     }
 })

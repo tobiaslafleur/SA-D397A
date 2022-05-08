@@ -1,4 +1,3 @@
-import { checkForError } from './errorHandler.js'
 import { createType, newSub, removeSub } from '../data/types.data.js'
 
 const createNewType = async (body) => {

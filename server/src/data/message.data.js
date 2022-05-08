@@ -3,10 +3,10 @@ import messageModel from './schema/message.schema.js'
 const createMessage = async (body) => {
     try {
         const message = messageModel({
-            receiver: body.receiver,
+            receiver: body.userId,
             messageRead: body.messageRead,
             text: body.text,
-            product: body.product
+            product: body.productId
         })
 
         await message.save()

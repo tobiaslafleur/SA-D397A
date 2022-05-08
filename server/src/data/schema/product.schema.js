@@ -8,10 +8,10 @@ const productSchema = new Schema({
         required: true
     },
     // --------- Type ska ändras? ---------
-    type: {
-        type: [String],
-        required: true
-    },
+    types: [{
+        type: Schema.Types.ObjectId,
+        ref: 'types'
+    }],
     price: {
         type: Number,
         required: true
@@ -31,7 +31,8 @@ const productSchema = new Schema({
     },
     // ------ Ska seller vara något annat än String? ------
     seller: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'user',
         required: true
     }
 })

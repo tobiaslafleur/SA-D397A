@@ -1,17 +1,36 @@
 import styles from '../styles/Product.module.css'
 
-export default function Products({ product }) {
+export default function Products({ product, user }) {
     console.log(product)
 
-    const status = checkStatus(product.status)
     return (
-        <div className={styles.product}>
+        < div className={styles.product} >
             <h1>{product.name}</h1>
             <p>{product.price}kr</p>
-            <p className={status ? styles.available : styles.unavailable}>{product.status}</p>
-            <button>Buy</button>
-        </div>
+            <p className={checkStatus(product.status) ? styles.available : styles.unavailable}>{product.status}</p>
+            <button onClick={() => createOrder(product, user)}>Buy</button>
+        </div >
     )
+}
+
+const createOrder = async (product, user) => {
+    const order = {
+        seller: product.seller,
+        buyer: user._id,
+        product: product._id
+    }
+
+    const res = await fetch('http://localhost:3000/api/order/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(order)
+    })
+
+    const data = await res.json()
+
+    console.log(data)
 }
 
 const checkStatus = (status) => {

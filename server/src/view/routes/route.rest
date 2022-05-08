@@ -2,8 +2,7 @@ POST http://localhost:3000/api/types/
 Content-Type: application/json
 
 {
-    "name": "Macbook",
-    "subscribers": "username2"
+    "name": "Macbook"
 }
 
 ###
@@ -13,8 +12,7 @@ Content-Type: application/json
 
 {
     "_id": "6273b5e875c3010b8c991b5a",
-    "name": "Macbook",
-    "subscribers": "username3"
+    "userId": "626fca3e78405c3b9fd3bf42"
 }
 
 ###
@@ -24,7 +22,6 @@ Content-Type: application/json
 
 {
     "_id": "6273b5e875c3010b8c991b5a",
-    "name": "Macbook",
     "subscribers": "username3"
 }
 
@@ -36,8 +33,7 @@ Content-Type: application/json
 {
     "seller": "Fisk-AB",
     "buyer": "lille-lu",
-    "product": "Gädda",
-    "status": "sold"
+    "product": "Gädda"
 }
 
 ###

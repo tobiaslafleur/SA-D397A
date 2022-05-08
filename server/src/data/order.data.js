@@ -1,28 +1,34 @@
 import orderModel from './schema/order.schema.js'
 
 const createOrder = async (body) => {
-    try {
-        
-        let dateTime = new Date();
+    console.log(body)
 
+    try {
         const order = new orderModel({
             seller: body.seller,
             buyer: body.buyer,
             product: body.product,
-            status: "sold",
-            orderDate: dateTime
+            status: 'Pending',
+            orderDate: Date.now()
         })
 
-
-
         await order.save()
-    return order
+        return order
 
     } catch (error) {
         return error
     }
 }
 
+const getAllOrdersData = async () => {
+    try {
+        return await orderModel.find()
+    } catch (error) {
+        return error
+    }
+}
+
 export {
-    createOrder
+    createOrder,
+    getAllOrdersData,
 }

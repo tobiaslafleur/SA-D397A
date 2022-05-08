@@ -39,7 +39,7 @@ export default function Home({ products }) {
           <Main user={user} />
           <div className={styles.products}>
             {products.map(product => {
-              return <Product product={product} />
+              return <Product key={product._id} product={product} user={user} />
             })}
           </div>
         </main>
