@@ -1,8 +1,6 @@
 import styles from '../styles/Product.module.css'
 
 export default function Products({ product, user }) {
-    console.log(product)
-
     return (
         < div className={styles.product} >
             <h1>{product.name}</h1>

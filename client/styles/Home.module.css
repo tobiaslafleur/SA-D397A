@@ -4,20 +4,12 @@
 }
 
 .main {
-  min-height: 97vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #121212;
-}
-
-.footer {
-  display: flex;
-  flex: 1;
-  border-top: 1px solid #eaeaea;
-  justify-content: center;
-  align-items: center;
+  background-color: #ffffff;
 }
 
 .products {
@@ -27,3 +19,4 @@
   justify-content: center;
   gap: 100px;
 }
+

@@ -1,13 +1,8 @@
 import express from 'express'
 
-import { createNewType, newSubscriber, removeSubscriber } from '../../logic/types.logic.js' // logik import
+import { createNewType, newSubscriber, removeSubscriber, getAllTypes } from '../../logic/types.logic.js' // logik import
 
 const router = express.Router()
-
-// Getting a specific Type
-router.get('/', (req, res) => {
-    res.send('Get one')
-})
 
 // Add type
 router.post('/', async (req, res) => {
@@ -25,6 +20,11 @@ router.patch('/:id', async (req, res) => {
 // Remove subscriber from specific type
 router.delete('/:id', async (req, res) => {
     const response = await removeSubscriber(req.body)
+    res.send(response)
+})
+
+router.get('/', async (req, res) => {
+    const response = await getAllTypes()
     res.send(response)
 })
 

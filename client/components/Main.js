@@ -8,7 +8,7 @@ export default function Main({ user }) {
             <div className={styles.userinfo}>
                 <p className={styles.text}>Browse available products below</p>
                 <button className={styles.button}>
-                    <FaAngleDown color='white' size={24} />
+                    <FaAngleDown color='black' size={24} />
                 </button>
             </div>
         </div>

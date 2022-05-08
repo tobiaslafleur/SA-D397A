@@ -4,10 +4,12 @@ import { useState } from 'react'
 import styles from '../styles/Home.module.css'
 import Login from '../components/Login'
 import Product from '../components/Product'
+import CreateProduct from '../components/CreateProduct'
 
-export default function Home({ products }) {
+export default function Home({ products, types }) {
   const [login, setLogin] = useState(false)
   const [user, setUser] = useState(null)
+  const [createProductOpen, setCreateProductOpen] = useState(false)
 
   if (!login) {
     return (
@@ -20,41 +22,42 @@ export default function Home({ products }) {
         <main className={styles.main}>
           <Login setLogin={setLogin} setUser={setUser} />
         </main>
-
-        <footer className={styles.footer}>
-          <a>Powered by Kings</a>
-        </footer>
       </div>
     )
   }
   else {
     return (
-      <div className={styles.container}>
-        <Head>
-          <title>Marketplace</title>
-          <meta name="description" content="DA379A" />
-        </Head>
+      <>
+        {createProductOpen && <CreateProduct toggle={setCreateProductOpen} types={types} user={user} />}
+        <div className={styles.container && createProductOpen ? styles.blur : ''}>
+          <Head>
+            <title>Marketplace</title>
+            <meta name="description" content="DA379A" />
+          </Head>
 
-        <main className={styles.main}>
-          <Main user={user} />
-          <div className={styles.products}>
-            {products.map(product => {
-              return <Product key={product._id} product={product} user={user} />
-            })}
-          </div>
-        </main>
-
-        <footer className={styles.footer}>
-          <a>Powered by Kings</a>
-        </footer>
-      </div>
+          <main className={styles.main}>
+            <Main user={user} />
+            <div className={styles.options}>
+              <button onClick={() => setCreateProductOpen(true)}>Create Product</button>
+            </div>
+            <div className={styles.products}>
+              {products.map(product => {
+                return <Product key={product._id} product={product} user={user} />
+              })}
+            </div>
+          </main>
+        </div>
+      </>
     )
   }
 }
 
 Home.getInitialProps = async () => {
-  const res = await fetch('http://localhost:3000/api/product/')
-  const products = await res.json()
+  const productsRes = await fetch('http://localhost:3000/api/product/')
+  const products = await productsRes.json()
 
-  return { products }
+  const typesRes = await fetch('http://localhost:3000/api/types/')
+  const types = await typesRes.json()
+
+  return { products, types }
 }

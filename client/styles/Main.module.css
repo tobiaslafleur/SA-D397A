@@ -8,7 +8,7 @@
 }
 
 .title {
-    color: white;
+    color: black;
     opacity: 1;
     font-size: 3em;
 }
@@ -28,6 +28,6 @@
 }
 
 .text {
-    color: white;
+    color: black;
     margin: 8px;
 }

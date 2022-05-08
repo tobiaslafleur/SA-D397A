@@ -51,8 +51,17 @@ const removeSub = async (body) => {
     }
 }
 
+const getAllTypesData = async () => {
+    try {
+        return typesSchema.find()
+    } catch (error) {
+        return error
+    }
+}
+
 export {
     createType,
     newSub,
-    removeSub
+    removeSub,
+    getAllTypesData
 }
