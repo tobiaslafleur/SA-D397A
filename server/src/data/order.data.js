@@ -1,20 +1,24 @@
 import orderModel from './schema/order.schema.js'
 
 const createOrder = async (body) => {
-    console.log(body)
-
     try {
-        const order = new orderModel({
-            seller: body.seller,
-            buyer: body.buyer,
-            product: body.product,
-            status: 'Pending',
-            orderDate: Date.now()
-        })
+        const check = await orderModel.find({ seller: body.seller, buyer: body.buyer, product: body.product })
 
-        await order.save()
-        return order
+        if (!check.length) {
+            const order = new orderModel({
+                seller: body.seller,
+                buyer: body.buyer,
+                product: body.product,
+                status: 'Pending',
+                orderDate: Date.now()
+            })
 
+            await order.save()
+            return order
+        }
+
+        console.log('found order')
+        return check
     } catch (error) {
         return error
     }

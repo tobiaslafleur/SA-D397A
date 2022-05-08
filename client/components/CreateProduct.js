@@ -9,8 +9,6 @@ export default function Products({ toggle, user, types }) {
     const [color, setColor] = useState('')
     const [condition, setCondition] = useState('')
 
-    console.log(user)
-
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -54,7 +52,7 @@ export default function Products({ toggle, user, types }) {
                     <label className={styles.label}>Price</label>
                     <input className={styles.input} type='text' required value={price} onChange={(e) => setPrice(e.target.value)} />
                     <label className={styles.label}>Manufacture date</label>
-                    <input className={styles.input} type='text' required value={manufactured} onChange={(e) => setManufactured(e.target.value)} />
+                    <input className={styles.input} type='date' required value={manufactured} onChange={(e) => setManufactured(e.target.value)} />
                     <label className={styles.label}>Color</label>
                     <input className={styles.input} type='text' required value={color} onChange={(e) => setColor(e.target.value)} />
                     <label className={styles.label}>Condition</label>
