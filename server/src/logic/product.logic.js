@@ -5,6 +5,7 @@ import {
     getProductsByTypeData,
     getProductsByPriceData,
     getProductsByConditionData,
+    getProductByIdData,
     getAllProductsData
 } from '../data/product.data.js'
 
@@ -31,6 +32,10 @@ const getProductsByCondition = (condition) => {
     return getProductsByConditionData(condition)
 }
 
+const getProductById = async (id) => {
+    return await getProductByIdData(id)
+}
+
 const getAllProducts = () => {
     return getAllProductsData()
 }
@@ -41,5 +46,6 @@ export {
     getProductsBytype,
     getProductsByPrice,
     getProductsByCondition,
+    getProductById,
     getAllProducts
 }

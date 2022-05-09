@@ -63,6 +63,12 @@ const getAllProductsData = async () => {
     return product
 }
 
+const getProductByIdData = async (id) => {
+    const product = await productModel.findOne({id})
+
+    return product
+}
+
 const updateProductStatusData = async (productid) => {
     return await productModel.findOneAndUpdate({ _id: productid }, { status: 'Sold' })
 }
@@ -73,6 +79,8 @@ export {
     getProductsByTypeData,
     getProductsByPriceData,
     getProductsByConditionData,
+    getProductByIdData,
     getAllProductsData,
-    updateProductStatusData
+    updateProductStatusData,
+    
 }

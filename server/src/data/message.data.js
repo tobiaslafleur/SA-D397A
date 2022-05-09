@@ -19,8 +19,7 @@ const createMessage = async (body) => {
 }
 
 const getMessage = async (userId) => {
-    console.log("hejhej")
-    const messages = await messageModel.find({userId})
+    const messages = await messageModel.find({receiver: userId})
 
     return messages
 }
