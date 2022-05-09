@@ -1,6 +1,7 @@
 import messageModel from './schema/message.schema.js'
 
 const createMessage = async (body) => {
+    console.log("hejhej")
     try {
         const message = messageModel({
             receiver: body.userId,
@@ -17,6 +18,14 @@ const createMessage = async (body) => {
     }
 }
 
+const getMessage = async (userId) => {
+    console.log("hejhej")
+    const messages = await messageModel.find({userId})
+
+    return messages
+}
+
 export {
-    createMessage
+    createMessage,
+    getMessage
 }
