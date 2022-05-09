@@ -1,10 +1,21 @@
 import express from 'express'
-import { createNewOrder, getAllOrders } from '../../logic/order.logic.js'
+import { createNewOrder, getAllOrders, getOrdersForUser, updateOrderStatus } from '../../logic/order.logic.js'
 
 const router = express.Router()
 
 router.post('/', async (req, res) => {
     const response = await createNewOrder(req.body)
+    res.send(response)
+})
+
+router.put('/:userid', async (req, res) => {
+    const response = await updateOrderStatus(req.params.userid, req.body.status, req.body.productid)
+    console.log(req.body)
+    res.send(response)
+})
+
+router.get('/user/:userid', async (req, res) => {
+    const response = await getOrdersForUser(req.params.userid)
     res.send(response)
 })
 

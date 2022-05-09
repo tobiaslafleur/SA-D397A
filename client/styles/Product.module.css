@@ -21,3 +21,7 @@
 .available {
     color: green !important;
 }
+
+.unavailable {
+    color: red !important;
+}

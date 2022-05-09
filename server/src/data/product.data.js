@@ -63,11 +63,16 @@ const getAllProductsData = async () => {
     return product
 }
 
+const updateProductStatusData = async (productid) => {
+    return await productModel.findOneAndUpdate({ _id: productid }, { status: 'Sold' })
+}
+
 export {
     createProductData,
     getProductsByNameData,
     getProductsByTypeData,
     getProductsByPriceData,
     getProductsByConditionData,
-    getAllProductsData
+    getAllProductsData,
+    updateProductStatusData
 }

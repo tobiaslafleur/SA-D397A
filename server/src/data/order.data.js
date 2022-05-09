@@ -24,6 +24,31 @@ const createOrder = async (body) => {
     }
 }
 
+const updateOrderStatusData = async (userid, status) => {
+    try {
+        return await orderModel.findOneAndUpdate({ _id: userid }, { status })
+    } catch (error) {
+        return error
+    }
+}
+
+const getOrdersForUserData = async (userid) => {
+    try {
+        return await orderModel.find({
+            $or: [
+                {
+                    buyer: userid
+                },
+                {
+                    seller: userid
+                }
+            ]
+        })
+    } catch (error) {
+        return error
+    }
+}
+
 const getAllOrdersData = async () => {
     try {
         return await orderModel.find()
@@ -35,4 +60,6 @@ const getAllOrdersData = async () => {
 export {
     createOrder,
     getAllOrdersData,
+    getOrdersForUserData,
+    updateOrderStatusData
 }
