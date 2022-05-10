@@ -46,8 +46,8 @@ export default function Home({ products, types }) {
               <button onClick={() => setCreateProductOpen(true)}>Create Product</button>
               <button onClick={() => setOrdersOpen(true)}>Check Orders</button>
             </div>
-            <div>
-              <input placeholder="Enter Post Title" onChange={event => setQuery(event.target.value)}/>
+            <div class={styles.searchField}>
+              <input placeholder="Search for product.." onChange={event => setQuery(event.target.value)}/>
             </div>
             <div className={styles.products}>
               {
