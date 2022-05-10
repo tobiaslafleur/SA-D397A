@@ -13,6 +13,8 @@ export default function Home({ products, types }) {
   const [createProductOpen, setCreateProductOpen] = useState(false)
   const [ordersOpen, setOrdersOpen] = useState(false)
 
+  const [query, setQuery] = useState("")
+ 
   if (!login) {
     return (
       <div className={styles.container}>
@@ -44,10 +46,21 @@ export default function Home({ products, types }) {
               <button onClick={() => setCreateProductOpen(true)}>Create Product</button>
               <button onClick={() => setOrdersOpen(true)}>Check Orders</button>
             </div>
+            <div>
+              <input placeholder="Enter Post Title" onChange={event => setQuery(event.target.value)}/>
+            </div>
             <div className={styles.products}>
-              {products.map(product => {
-                return <Product key={product._id} product={product} user={user} />
-              })}
+              {
+                products.filter(product => {
+                  if (query === '') {
+                    return product
+                  } else if (product.name.toLowerCase().includes(query.toLocaleLowerCase())) {
+                    return product
+                  }
+                }).map((product => {
+                  return <Product key={product._id} product={product} user={user}/>
+                }))
+              }
             </div>
           </main>
         </div>
