@@ -58,7 +58,11 @@ export default function Products({ toggle, user, types }) {
                     <label className={styles.label}>Color</label>
                     <input className={styles.input} type='text' required value={color} onChange={(e) => setColor(e.target.value)} />
                     <label className={styles.label}>Condition</label>
-                    <input className={styles.input} type='text' required value={condition} onChange={(e) => setCondition(e.target.value)} />
+                    <select className={styles.input} value={type} onChange={e => setType(e.target.value)}>
+                        <option>Like New</option>
+                        <option>Used</option>
+                        <option>Well-Worn</option>
+                    </select>
                     <input className={styles.submitButton} type='submit' value='Create product' />
                 </form>
                 <button className={styles.closeButton} onClick={() => toggle(false)}>Close</button>
