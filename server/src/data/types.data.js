@@ -59,9 +59,27 @@ const getAllTypesData = async () => {
     }
 }
 
+const getTypeByIdData = async (id) => {
+    try {
+        return typesSchema.findById(id)
+    } catch (err) {
+        return err
+    }
+}
+
+const getTypeByNameData = async (name) => {
+    try {
+        return typesSchema.findOne({name: name})
+    } catch (err) {
+        return err
+    }
+}
+
 export {
     createType,
     newSub,
     removeSub,
-    getAllTypesData
+    getAllTypesData,
+    getTypeByIdData,
+    getTypeByNameData,
 }

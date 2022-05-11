@@ -6,7 +6,8 @@ import {
     getProductsBytype,
     getProductsByPrice,
     getProductsByCondition,
-    getAllProducts
+    getAllProducts,
+    getProductsFilter
 } from '../../logic/product.logic.js'
 
 const router = express.Router()
@@ -42,6 +43,11 @@ router.get('/condition/:condition', async (req, res) => {
 
 router.get('/', async (req, res) => {
     const response = await getAllProducts()
+    res.send(response)
+})
+
+router.get('/filter', async (req, res) => {
+    const response = await getProductsFilter(req.query.condition, req.query.type, req.query.maxPrice, req.query.minPrice)
     res.send(response)
 })
 

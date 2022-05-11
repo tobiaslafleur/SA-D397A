@@ -8,6 +8,7 @@ import {
     getProductByIdData,
     getAllProductsData
 } from '../data/product.data.js'
+import { getTypeById, getTypeByName } from './types.logic.js'
 
 
 // Behöver egen errorhandling ig
@@ -40,6 +41,30 @@ const getAllProducts = () => {
     return getAllProductsData()
 }
 
+const getProductsFilter = async (condition, type, maxPrice, minPrice) => {
+    let products = await getAllProductsData()
+
+    if(condition != null || condition != undefined) {
+        products = products.filter(product => product.condition === condition)
+    }
+
+    //Todo: Ändra så types inte är en array
+    if(type != null || type != undefined) {
+        let typeId = await getTypeByName(type)
+    }
+
+    if(maxPrice > 0) {
+        products = products.filter(product => product.price <= maxPrice)
+    }
+
+    if(minPrice > 0) {
+        products = products.filter(product => product.price >= minPrice)
+    }
+
+    return products
+    
+}
+
 export {
     createProduct,
     getProductsByName,
@@ -47,5 +72,6 @@ export {
     getProductsByPrice,
     getProductsByCondition,
     getProductById,
-    getAllProducts
+    getAllProducts,
+    getProductsFilter
 }
