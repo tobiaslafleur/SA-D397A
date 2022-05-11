@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Main from '../components/Main'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 import Login from '../components/Login'
 import Product from '../components/Product'
@@ -10,16 +10,73 @@ import Order from '../components/Order'
 import React from 'react'
 
 
-export default function Home({ products, types }) {
+export default function Home({ types }) {
   const [login, setLogin] = useState(false)
   const [user, setUser] = useState(null)
   const [createProductOpen, setCreateProductOpen] = useState(false)
   const [ordersOpen, setOrdersOpen] = useState(false)
+  const [products, setProducts] = useState([])
+  let filterUrl = 'http://localhost:3000/api/product/filter?'
 
   // Type search
   const [selectedCategory, setSelectedCategory] = useState('Select Category')
   const [selectedCondition, setSelectedCondition] = useState('Select Condition')
+  const [minPrice, setMinPrice] = useState(0)
+  const [maxPrice, setMaxPrice] = useState(0)
 
+  useEffect(() => {
+    fetchProducts()
+  }, [])
+
+  const fetchProducts = async () => {
+    const productsRes = await fetch('http://localhost:3000/api/product/')
+    setProducts(await productsRes.json())
+  }
+
+  const handleCategory = (value) => {
+    setSelectedCategory(value)
+  }
+
+  const handleCondition = (value) => {
+    setSelectedCondition(value)
+  }
+
+  const handleMinPrice = (value) => {
+    setMinPrice(value)
+  }
+
+  const handleMaxPrice = (value) => {
+    setMaxPrice(value)
+  }
+
+  const searchProducts = async () => {
+    if(selectedCategory != 'Select Category') {
+      filterUrl += 'type='+selectedCategory+'&'
+    }
+
+    if(selectedCondition != 'Select Condition') {
+      filterUrl += 'condition='+selectedCondition+'&'
+    }
+
+    if(maxPrice > 0) {
+      filterUrl += 'maxPrice='+maxPrice+'&'
+    }
+
+    if(minPrice > 0) {
+      filterUrl += 'minPrice='+minPrice+'&'
+    }
+
+    alert(selectedCategory)
+    
+    const prodFetch = await fetch(filterUrl)
+    setProducts(await prodFetch.json())
+
+    filterUrl = 'http://localhost:3000/api/product/filter?'
+    setMaxPrice(0)
+    setMinPrice(0)
+    setSelectedCategory('Select Category')
+    setSelectedCondition('Select Condition')
+  }
 
   if (!login) {
     return (
@@ -55,14 +112,14 @@ export default function Home({ products, types }) {
 
             <form>
               <h3>Selected Category</h3>
-              <select id="category-input" onChange={event => setSelectedCategory(event.target.value)}>
+              <select id="category-input" onChange={event => handleCategory(event.target.value)}>
                 <option>Select Category</option>
                 {
                   types.map((type) => (<option text={type.name} key={type._id} value={type._id}>{type.name}</option>))
                 }
 
               </select>
-              <select id="condtion-input" onChange={event => setSelectedCondition(event.target.value)}>
+              <select id="condtion-input" onChange={event => handleCondition(event.target.value)}>
                 <option>Select Condition</option>
                 <option>Like New</option>
                 <option>Used</option>
@@ -71,31 +128,15 @@ export default function Home({ products, types }) {
             </form>
 
             <div>
+              <p>Min price</p>
               <input></input>
-              <p>-</p>
+              <p>Max price</p>
               <input></input>
             </div>
-
+            <button onClick={searchProducts}>Search</button>
             <div className={styles.products}>
               {
-                products.filter(product => {
-                  if (selectedCategory === 'Select Category') {
-                    if (selectedCondition === 'Select Condition') {
-                      return product
-                    }
-                  }
-
-                  if (product.condition === selectedCondition) {
-                    return product
-                  }
-
-                  for (let i = 0; i < product.types.length; i++) {
-                    if (selectedCategory === product.types[i]) {
-                      console.log(product._id)
-                      return product
-                    }
-                  }
-                }).map((product => {
+                products.map((product => {
                   return <Product key={product._id} product={product} user={user} />
                 }))
               }
@@ -108,11 +149,8 @@ export default function Home({ products, types }) {
 }
 
 Home.getInitialProps = async () => {
-  const productsRes = await fetch('http://localhost:3000/api/product/')
-  const products = await productsRes.json()
-
   const typesRes = await fetch('http://localhost:3000/api/types/')
   const types = await typesRes.json()
 
-  return { products, types }
+  return { types }
 }
