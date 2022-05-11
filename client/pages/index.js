@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Main from '../components/Main'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styles from '../styles/Home.module.css'
 import Login from '../components/Login'
 import Product from '../components/Product'
@@ -16,15 +16,10 @@ export default function Home({ products, types }) {
   const [createProductOpen, setCreateProductOpen] = useState(false)
   const [ordersOpen, setOrdersOpen] = useState(false)
 
-  // Normal search
-  const [searchTerm, searchTermQuery] = useState("")
-
   // Type search
-  const [selectedCategory, setSelectedCategory] = useState("")
-  /*const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value)
-    console.log('Supposed to show ' + event.target.value)
-  }*/
+  const [selectedCategory, setSelectedCategory] = useState('Select Category')
+  const [selectedCondition, setSelectedCondition] = useState('Select Condition')
+
 
   if (!login) {
     return (
@@ -58,52 +53,53 @@ export default function Home({ products, types }) {
               <button onClick={() => setOrdersOpen(true)}>Check Orders</button>
             </div>
 
-          
-            <div class={styles.searchField}>
-              <input placeholder="Search for product.." onChange={event => searchTermQuery(event.target.value)}/>
-            </div>
-
             <form>
               <h3>Selected Category</h3>
-                <select id="category-input" onChange={event => setSelectedCategory(event.target.value)}>
-                    <option>Select Category</option>
-                    {
-                        types.map((type) => (<option text={type._id} key={type._id}>{type._id}</option>))
-                    }
-                    
-                </select>
+              <select id="category-input" onChange={event => setSelectedCategory(event.target.value)}>
+                <option>Select Category</option>
+                {
+                  types.map((type) => (<option text={type.name} key={type._id} value={type._id}>{type.name}</option>))
+                }
+
+              </select>
+              <select id="condtion-input" onChange={event => setSelectedCondition(event.target.value)}>
+                <option>Select Condition</option>
+                <option>Like New</option>
+                <option>Used</option>
+                <option>Well-Worn</option>
+              </select>
             </form>
 
-            <div className={styles.products}>
-              {
-                products.filter(product =>  {
-                  if (selectedCategory === product.types.toString()) {
-                    return product
-                  } else if (selectedCategory === 'Select Category')
-                  if (searchTerm === '') {
-                    return product
-                  } else if (product.name.toLowerCase().includes(searchTerm.toLocaleLowerCase())) {
-                    return product
-                  } 
-                }).map((product => {
-                  return <Product key={product._id} product={product} user={user}/>
-                }))
-              }
-            </div>
-            
-           {/* Osäker på detta */} 
-            <div className={styles.products}>
-              {
-                products.filter(product =>  {
-                  if (selectedCategory === product.types.toString()) {
-                    return product
-                  }
-                }).map((product => {
-                  return <Product key={product._id} product={product} user={user}/>
-                }))
-              }
+            <div>
+              <input></input>
+              <p>-</p>
+              <input></input>
             </div>
 
+            <div className={styles.products}>
+              {
+                products.filter(product => {
+                  if (selectedCategory === 'Select Category') {
+                    if (selectedCondition === 'Select Condition') {
+                      return product
+                    }
+                  }
+
+                  if (product.condition === selectedCondition) {
+                    return product
+                  }
+
+                  for (let i = 0; i < product.types.length; i++) {
+                    if (selectedCategory === product.types[i]) {
+                      console.log(product._id)
+                      return product
+                    }
+                  }
+                }).map((product => {
+                  return <Product key={product._id} product={product} user={user} />
+                }))
+              }
+            </div>
           </main>
         </div>
       </>

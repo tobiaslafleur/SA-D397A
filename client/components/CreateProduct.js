@@ -3,7 +3,7 @@ import styles from '../styles/CreateProduct.module.css'
 
 export default function Products({ toggle, user, types }) {
     const [product, setProduct] = useState('')
-    const [type, setType] = useState(types[0].name)
+    const [type, setType] = useState(types[0]._id)
     const [price, setPrice] = useState('')
     const [manufactured, setManufactured] = useState('')
     const [color, setColor] = useState('')
@@ -14,7 +14,7 @@ export default function Products({ toggle, user, types }) {
 
         const prod = {
             name: product,
-            type: type._id,
+            type: type,
             price: price,
             manufactured: manufactured,
             color: color,
@@ -35,6 +35,8 @@ export default function Products({ toggle, user, types }) {
         if (!message.errors) {
             toggle(false)
         }
+
+
     }
 
     return (
@@ -46,7 +48,7 @@ export default function Products({ toggle, user, types }) {
                     <label className={styles.label}>Type</label>
                     <select className={styles.input} value={type} onChange={e => setType(e.target.value)}>
                         {types.map(type => {
-                            return <option value={type._id}>{type.name}</option>
+                            return <option key={type._id} value={type._id}>{type.name}</option>
                         })}
                     </select>
                     <label className={styles.label}>Price</label>

@@ -6,6 +6,8 @@ export default function Products({ product, user }) {
             <h1>{product.name}</h1>
             <p>{product.price}kr</p>
             <p className={checkStatus(product.status) ? styles.available : styles.unavailable}>{product.status}</p>
+            <p>{product.condition}</p>
+            <p>{product.types.toString()}</p>
             <button onClick={() => createOrder(product, user)}>Buy</button>
         </div >
     )
