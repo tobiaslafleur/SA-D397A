@@ -49,8 +49,8 @@ const getProductsFilter = async (condition, type, maxPrice, minPrice) => {
     }
 
     if(type != null || type != undefined) {
-        let typeId = await getTypeByName(type)
-        products = products.filter(product => product.types.includes(typeId._id))
+        console.log(type)
+        products = products.filter(product => product.types.includes(type))
     }
 
     if(maxPrice > 0) {

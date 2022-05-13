@@ -66,7 +66,7 @@ export default function Home({ types }) {
       filterUrl += 'minPrice='+minPrice+'&'
     }
 
-    alert(selectedCategory)
+    alert(filterUrl)
     
     const prodFetch = await fetch(filterUrl)
     setProducts(await prodFetch.json())
@@ -129,9 +129,9 @@ export default function Home({ types }) {
 
             <div>
               <p>Min price</p>
-              <input></input>
+              <input onChange={event => handleMinPrice(event.target.value)} type="number" value={minPrice} ></input>
               <p>Max price</p>
-              <input></input>
+              <input onChange={event => handleMaxPrice(event.target.value)} type="number" value={maxPrice}></input>
             </div>
             <button onClick={searchProducts}>Search</button>
             <div className={styles.products}>
