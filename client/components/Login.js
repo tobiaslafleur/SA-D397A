@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import styles from '../styles/Login.module.css'
+import Signup from './Signup'
 export default function Login(props) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [hidden, setHidden] = useState(true)
+    const [signupHidden, setSignupHidden] = useState(true)
     const setLogin = props.setLogin
     const setUser = props.setUser
     const handleLogin = async () => {
@@ -30,6 +32,10 @@ export default function Login(props) {
 
     return (
         <div className={styles.container}>
+            <div hidden={signupHidden}>
+                <Signup setHidden={setSignupHidden}/>
+            </div>
+            
             <h1 className={styles.title}>Log in</h1>
             <div className={styles.infocontainer}>
                 <p className={styles.info}>Username</p>
@@ -41,7 +47,7 @@ export default function Login(props) {
             </div>
             <p className={styles.error} hidden={hidden}>Incorrect credentials</p>
             <button className={styles.loginb} onClick={handleLogin}>Log in</button>
-            <button className={styles.signupb}>Sign up</button>
+            <button className={styles.signupb} onClick={() => setSignupHidden(false)}>Sign up</button>
         </div>
     )
 }

@@ -8,6 +8,7 @@ import CreateProduct from '../components/CreateProduct'
 import Order from '../components/Order'
 
 import React from 'react'
+import Signup from '../components/Signup'
 
 
 export default function Home({ types }) {
