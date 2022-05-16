@@ -1,7 +1,6 @@
 import messageModel from './schema/message.schema.js'
 
 const createMessage = async (body) => {
-    console.log("hejhej")
     try {
         const message = messageModel({
             receiver: body.userId,

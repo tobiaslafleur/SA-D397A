@@ -1,9 +1,14 @@
-import { createType, newSub, removeSub, getAllTypesData, getTypeByIdData, getTypeByNameData } from '../data/types.data.js'
+import { getSubscribersData, createType, newSub, removeSub, getAllTypesData, getTypeByIdData, getTypeByNameData } from '../data/types.data.js'
 
 const createNewType = async (body) => {
     const res = await createType(body)
     return res
 }
+
+const getSubscribers = async (type) => {
+    const res = await getSubscribersData(type)
+    return res
+} 
 
 const newSubscriber = async (body) => {
     const res = await newSub(body)
@@ -34,4 +39,5 @@ export {
     getAllTypes,
     getTypeById,
     getTypeByName,
+    getSubscribers,
 }

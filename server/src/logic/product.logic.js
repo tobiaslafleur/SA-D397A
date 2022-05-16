@@ -9,11 +9,17 @@ import {
     getAllProductsData
 } from '../data/product.data.js'
 import { getTypeById, getTypeByName } from './types.logic.js'
+import { createNewMessage } from './message.logic.js'
 
 
 // Behöver egen errorhandling ig
 const createProduct = async (body) => {
     const res = await createProductData(body)
+
+    if(res._id) {
+        await createNewMessage(res)
+    }
+
     return checkForError(res)
 }
 

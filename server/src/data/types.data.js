@@ -75,6 +75,14 @@ const getTypeByNameData = async (name) => {
     }
 }
 
+const getSubscribersData = async (type) => {
+    try {
+        return typesSchema.findById(type)
+    } catch (err) {
+        return err
+    } 
+}
+
 export {
     createType,
     newSub,
@@ -82,4 +90,5 @@ export {
     getAllTypesData,
     getTypeByIdData,
     getTypeByNameData,
+    getSubscribersData,
 }
