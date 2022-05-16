@@ -9,6 +9,7 @@ import Order from '../components/Order'
 
 import React from 'react'
 import Signup from '../components/Signup'
+import Messages from '../components/Messages'
 
 
 export default function Home({ types }) {
@@ -17,6 +18,7 @@ export default function Home({ types }) {
   const [createProductOpen, setCreateProductOpen] = useState(false)
   const [ordersOpen, setOrdersOpen] = useState(false)
   const [products, setProducts] = useState([])
+  const [messages, setMessages] = useState([])
   let filterUrl = 'http://localhost:3000/api/product/filter?'
 
   // Type search
@@ -29,7 +31,8 @@ export default function Home({ types }) {
 
   useEffect(() => {
     fetchProducts()
-  }, [])
+    getMessages()
+  }, [user])
 
   const fetchProducts = async () => {
     const productsRes = await fetch('http://localhost:3000/api/product/')
@@ -81,6 +84,14 @@ export default function Home({ types }) {
     setSelectedCondition('Select Condition')
   }
 
+  const getMessages = async () => {
+    if(user) {
+      let url = `http://localhost:3000/api/message/${user._id}`
+      const res = await fetch(url)
+      setMessages(await res.json())
+    }  
+  }
+
   if (!login) {
     return (
       <div className={styles.container}>
@@ -110,11 +121,16 @@ export default function Home({ types }) {
 
           <main className={styles.main}>
             <Main user={user} />
+            <div>
+              <Messages messages={messages}/>
+            </div>
+            <div>
+              <button>Messages ({messages.length})</button>
+            </div>
             <div className={styles.options}>
               <button onClick={() => setCreateProductOpen(true)}>Create Product</button>
               <button onClick={() => setOrdersOpen(true)}>Check Orders</button>
             </div>
-
             <form>
               <h3>Selected Category</h3>
               <select id="category-input" onChange={event => handleCategory(event.target.value)}>
