@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import styles from '../styles/Signup.module.css'
 
-export default function Signup(props) {
+
+export default function Signup({ toggle }) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [address, setAddress] = useState('')
@@ -9,7 +10,6 @@ export default function Signup(props) {
     const [firstName, setFirstname] = useState('')
     const [lastname, setLastname] = useState('')
     const [dob, setDob] = useState('')
-    const setHidden = props.setHidden
 
     const handleSignup = async () => {
         let url = 'http://localhost:3000/api/user/'
@@ -70,8 +70,7 @@ export default function Signup(props) {
             <input placeholder='Email' onChange={event => setEmail(event.target.value)}></input>
         </div>
         <button onClick={handleSignup}>Signup</button>
-        <button onClick={setHidden(true)}>Close</button>
-
+        <button onClick={() => toggle(false)}>Close</button>
     </div>
   )
 }

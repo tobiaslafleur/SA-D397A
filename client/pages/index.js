@@ -25,6 +25,8 @@ export default function Home({ types }) {
   const [minPrice, setMinPrice] = useState(0)
   const [maxPrice, setMaxPrice] = useState(0)
 
+  const [signUpOpen, setSignUpopen] = useState(false)
+
   useEffect(() => {
     fetchProducts()
   }, [])
@@ -89,6 +91,8 @@ export default function Home({ types }) {
 
         <main className={styles.main}>
           <Login setLogin={setLogin} setUser={setUser} />
+          {signUpOpen && <Signup toggle={setSignUpopen}/>}
+          <button onClick={() => setSignUpopen(!signUpOpen)}>Sign Up</button>
         </main>
       </div>
     )
