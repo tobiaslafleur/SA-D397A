@@ -57,9 +57,21 @@ const getAllOrdersData = async () => {
     }
 }
 
+// parametrar för sök ska in
+const getOrdersDateRangeData = async (minDate, maxDate) => {
+    try {
+        return await orderModel.find({
+            
+        })
+    } catch {
+        return error
+    }
+}
+
 export {
     createOrder,
     getAllOrdersData,
     getOrdersForUserData,
-    updateOrderStatusData
+    updateOrderStatusData,
+    getOrdersDateRangeData
 }

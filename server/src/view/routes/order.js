@@ -1,5 +1,5 @@
 import express from 'express'
-import { createNewOrder, getAllOrders, getOrdersForUser, updateOrderStatus } from '../../logic/order.logic.js'
+import { createNewOrder, getAllOrders, getOrdersForUser, updateOrderStatus, getOrdersDateRange } from '../../logic/order.logic.js'
 
 const router = express.Router()
 
@@ -21,6 +21,11 @@ router.get('/user/:userid', async (req, res) => {
 
 router.get('/', async (req, res) => {
     const response = await getAllOrders()
+    res.send(response)
+})
+
+router.get('/date/:mindate/:maxdate', async, (req, res) => {
+    const response = await getOrdersDateRange(req.params.mindate, req.params.maxdate)
     res.send(response)
 })
 

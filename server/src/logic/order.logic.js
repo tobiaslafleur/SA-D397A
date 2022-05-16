@@ -1,4 +1,4 @@
-import { createOrder, getAllOrdersData, getOrdersForUserData, updateOrderStatusData } from "../data/order.data.js";
+import { createOrder, getAllOrdersData, getOrdersForUserData, updateOrderStatusData, getOrdersDateRangeData } from "../data/order.data.js";
 import { updateProductStatusData } from '../data/product.data.js'
 
 const createNewOrder = async (body) => {
@@ -20,9 +20,14 @@ const getAllOrders = async () => {
     return await getAllOrdersData()
 }
 
+const getOrdersDateRange = async (minDate, maxDate) => {
+    return await getOrdersDateRangeData(minDate, maxDate)
+}
+
 export {
     createNewOrder,
     getAllOrders,
     getOrdersForUser,
-    updateOrderStatus
+    updateOrderStatus,
+    getOrdersDateRange
 }

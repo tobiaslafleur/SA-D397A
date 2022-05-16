@@ -17,6 +17,7 @@ const createNewMessage = async (payload) => {
             productId: payload._id
         }
 
+        //Skapa meddelande
         await createMessage(body)
     }
 }

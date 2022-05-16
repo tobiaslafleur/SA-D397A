@@ -16,6 +16,7 @@ import { createNewMessage } from './message.logic.js'
 const createProduct = async (body) => {
     const res = await createProductData(body)
 
+    //OM en produkt är tillagd, lägg till meddelande
     if(res._id) {
         await createNewMessage(res)
     }
