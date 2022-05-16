@@ -5,11 +5,15 @@ import { getSubscribers } from './types.logic.js'
 const createNewMessage = async (payload) => {
     let typeSubs = {}
 
+    //Hämta alla subscribers av tillagd typ
     for(let i = 0; i < payload.types.length; i++) {
         typeSubs = await getSubscribers(payload.types[i])
     }
 
+    //Loopa igenom alla subscribers
     for(let i = 0; i < typeSubs.subscribers.length; i++) {
+
+        //Skapa objekt med subscriber, messageRead, text samt produktid
         const body = {
             userId: typeSubs.subscribers[i],
             messageRead: false,
@@ -17,6 +21,7 @@ const createNewMessage = async (payload) => {
             productId: payload._id
         }
 
+        //Skapa meddelande
         await createMessage(body)
     }
 }
