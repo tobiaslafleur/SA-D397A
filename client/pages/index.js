@@ -10,13 +10,15 @@ import Order from '../components/Order'
 import React from 'react'
 import Signup from '../components/Signup'
 import Messages from '../components/Messages'
-
+import Type from '../components/Type'
 
 export default function Home({ types }) {
   const [login, setLogin] = useState(false)
   const [user, setUser] = useState(null)
   const [createProductOpen, setCreateProductOpen] = useState(false)
   const [ordersOpen, setOrdersOpen] = useState(false)
+  const [messagesOpen, setMessagesOpen] = useState(false)
+  const [typesOpen, setTypesOpen] = useState(false)
   const [products, setProducts] = useState([])
   const [messages, setMessages] = useState([])
   let filterUrl = 'http://localhost:3000/api/product/filter?'
@@ -55,25 +57,33 @@ export default function Home({ types }) {
     setMaxPrice(value)
   }
 
+  const messagesRead = (messages) => {
+    let mes = []
+
+    for (let i = 0; i < messages.length; i++) {
+      if (!messages[i].messageRead) mes.append(messages[i])
+    }
+
+    return mes
+  }
+
   const searchProducts = async () => {
-    if(selectedCategory != 'Select Category') {
-      filterUrl += 'type='+selectedCategory+'&'
+    if (selectedCategory != 'Select Category') {
+      filterUrl += 'type=' + selectedCategory + '&'
     }
 
-    if(selectedCondition != 'Select Condition') {
-      filterUrl += 'condition='+selectedCondition+'&'
+    if (selectedCondition != 'Select Condition') {
+      filterUrl += 'condition=' + selectedCondition + '&'
     }
 
-    if(maxPrice > 0) {
-      filterUrl += 'maxPrice='+maxPrice+'&'
+    if (maxPrice > 0) {
+      filterUrl += 'maxPrice=' + maxPrice + '&'
     }
 
-    if(minPrice > 0) {
-      filterUrl += 'minPrice='+minPrice+'&'
+    if (minPrice > 0) {
+      filterUrl += 'minPrice=' + minPrice + '&'
     }
 
-    alert(filterUrl)
-    
     const prodFetch = await fetch(filterUrl)
     setProducts(await prodFetch.json())
 
@@ -85,11 +95,15 @@ export default function Home({ types }) {
   }
 
   const getMessages = async () => {
-    if(user) {
+    if (user) {
       let url = `http://localhost:3000/api/message/${user._id}`
       const res = await fetch(url)
-      setMessages(await res.json())
-    }  
+
+      const mes = await res.json()
+
+      mes = messagesRead(mes)
+      setMessages(mes)
+    }
   }
 
   if (!login) {
@@ -102,7 +116,7 @@ export default function Home({ types }) {
 
         <main className={styles.main}>
           <Login setLogin={setLogin} setUser={setUser} />
-          {signUpOpen && <Signup toggle={setSignUpopen}/>}
+          {signUpOpen && <Signup toggle={setSignUpopen} />}
           <button onClick={() => setSignUpopen(!signUpOpen)}>Sign Up</button>
         </main>
       </div>
@@ -113,6 +127,8 @@ export default function Home({ types }) {
       <>
         {createProductOpen && <CreateProduct toggle={setCreateProductOpen} types={types} user={user} />}
         {ordersOpen && <Order toggle={setOrdersOpen} user={user} />}
+        {messagesOpen && <Messages toggle={setMessagesOpen} messages={messages} />}
+        {typesOpen && <Type toggle={setTypesOpen} user={user} types={types} />}
         <div className={styles.container}>
           <Head>
             <title>Marketplace</title>
@@ -122,10 +138,8 @@ export default function Home({ types }) {
           <main className={styles.main}>
             <Main user={user} />
             <div>
-              <Messages messages={messages}/>
-            </div>
-            <div>
-              <button>Messages ({messages.length})</button>
+              <button onClick={() => setMessagesOpen(true)}>Messages ({messages.length})</button>
+              <button onClick={() => setTypesOpen(true)}>Subscribe to type</button>
             </div>
             <div className={styles.options}>
               <button onClick={() => setCreateProductOpen(true)}>Create Product</button>
@@ -158,7 +172,7 @@ export default function Home({ types }) {
             <div className={styles.products}>
               {
                 products.map((product => {
-                  return <Product key={product._id} product={product} user={user} />
+                  if (product.status !== 'Sold') return <Product key={product._id} product={product} user={user} />
                 }))
               }
             </div>

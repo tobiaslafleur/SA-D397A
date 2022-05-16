@@ -1,5 +1,5 @@
 import express from 'express'
-import { createNewMessage, getAllMessages } from '../../logic/message.logic.js'
+import { createNewMessage, getAllMessages, updateMessage } from '../../logic/message.logic.js'
 
 const router = express.Router();
 
@@ -12,6 +12,11 @@ router.get('/:userId', async (req, res) => {
 // Posta till inbox
 router.post('/', async (req, res) => {
     const response = await createNewMessage(req.body)
+    res.send(response)
+})
+
+router.put('/', async (req, res) => {
+    const response = await updateMessage(req.body.messages)
     res.send(response)
 })
 

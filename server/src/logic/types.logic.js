@@ -8,10 +8,10 @@ const createNewType = async (body) => {
 const getSubscribers = async (type) => {
     const res = await getSubscribersData(type)
     return res
-} 
+}
 
-const newSubscriber = async (body) => {
-    const res = await newSub(body)
+const newSubscriber = async (typeId, userId) => {
+    const res = await newSub(typeId, userId)
     return res
 }
 
@@ -29,7 +29,7 @@ const getTypeById = async (id) => {
 }
 
 const getTypeByName = async (name) => {
-    return await getTypeByNameData(name) 
+    return await getTypeByNameData(name)
 }
 
 export {

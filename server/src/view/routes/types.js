@@ -11,10 +11,9 @@ router.post('/', async (req, res) => {
 })
 
 // Add subscriber to specific type
-router.patch('/:id', async (req, res) => {
-    const response = await newSubscriber(req.body)
+router.put('/:id', async (req, res) => {
+    const response = await newSubscriber(req.params.id, req.body.userId)
     res.send(response)
-
 })
 
 // Remove subscriber from specific type

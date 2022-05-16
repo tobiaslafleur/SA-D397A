@@ -13,15 +13,15 @@ const createType = async (body) => {
     }
 }
 
-const newSub = async (body) => {
+const newSub = async (typeId, userId) => {
     try {
         const updatedList = await types.updateOne(
             {
-                _id: body._id,
+                _id: typeId,
             },
             {
                 $addToSet: {
-                    subscribers: body.userId
+                    subscribers: userId
                 }
             }
         )
@@ -69,7 +69,7 @@ const getTypeByIdData = async (id) => {
 
 const getTypeByNameData = async (name) => {
     try {
-        return typesSchema.findOne({name: name})
+        return typesSchema.findOne({ name: name })
     } catch (err) {
         return err
     }
@@ -80,7 +80,7 @@ const getSubscribersData = async (type) => {
         return typesSchema.findById(type)
     } catch (err) {
         return err
-    } 
+    }
 }
 
 export {

@@ -18,12 +18,17 @@ const createMessage = async (body) => {
 }
 
 const getMessage = async (userId) => {
-    const messages = await messageModel.find({receiver: userId})
+    const messages = await messageModel.find({ receiver: userId })
 
     return messages
 }
 
+const updateMessageData = async (id) => {
+    await messageModel.findOneAndUpdate({ _id: id }, { messageRead: true })
+}
+
 export {
     createMessage,
-    getMessage
+    getMessage,
+    updateMessageData
 }
