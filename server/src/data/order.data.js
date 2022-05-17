@@ -61,7 +61,10 @@ const getAllOrdersData = async () => {
 const getOrdersDateRangeData = async (minDate, maxDate) => {
     try {
         return await orderModel.find({
-            
+            orderDate: { 
+                $gte: minDate, 
+                $lte: maxDate 
+            }
         })
     } catch {
         return error
