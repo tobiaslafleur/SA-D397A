@@ -57,7 +57,7 @@ const getAllOrdersData = async () => {
     }
 }
 
-// parametrar för sök ska in
+// Hämtar orders i intervallet och sorterar
 const getOrdersDateRangeData = async (minDate, maxDate) => {
     try {
         return await orderModel.find({
@@ -66,6 +66,7 @@ const getOrdersDateRangeData = async (minDate, maxDate) => {
                 $lte: maxDate 
             }
         })
+        .sort({orderDate: 1})
     } catch {
         return error
     }
