@@ -8,7 +8,10 @@ export default function Products({ toggle, user}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        console.log(user._id, ' ', mindate, ' ' , maxdate)
+        console.log(`http://localhost:3000/api/order/date/${user._id}/${mindate}/${maxdate}`)
         const res = await fetch(`http://localhost:3000/api/order/date/${user._id}/${mindate}/${maxdate}`)
+        
         setOrders(await res.json())
     }
 
@@ -24,9 +27,7 @@ export default function Products({ toggle, user}) {
                     <input className={styles.submitButton} type='submit' value='Search orders' />
                 </form>
                 <h1>Your orders</h1>
-                {orders.map(order => {
-                    if (order.buyer === user._id && order.status === 'Accepted') return <p>{order._id}</p>
-                })}
+                {orders.map(order =>  <p>{order._id}</p>)}
                 <button className={styles.closeButton} onClick={() => toggle(false)}>Close</button>
             </div>
         </div>

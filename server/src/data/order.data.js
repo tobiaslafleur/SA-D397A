@@ -65,7 +65,7 @@ const getOrdersDateRangeData = async (user, minDate, maxDate) => {
                 $gte: minDate, 
                 $lte: maxDate 
             },
-            status: 'Approved',
+            status: 'Accepted',
             buyer: user
         })
         .sort({orderDate: 1})
