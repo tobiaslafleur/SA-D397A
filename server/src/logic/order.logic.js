@@ -20,8 +20,8 @@ const getAllOrders = async () => {
     return await getAllOrdersData()
 }
 
-const getOrdersDateRange = async (minDate, maxDate) => {
-    return await getOrdersDateRangeData(minDate, maxDate)
+const getOrdersDateRange = async (user, minDate, maxDate) => {
+    return await getOrdersDateRangeData(user, minDate, maxDate)
 }
 
 export {

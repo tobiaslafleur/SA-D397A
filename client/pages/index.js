@@ -6,6 +6,7 @@ import Login from '../components/Login'
 import Product from '../components/Product'
 import CreateProduct from '../components/CreateProduct'
 import Order from '../components/Order'
+import SearchOrderDate from '../components/SearchOrderDate'
 
 import React from 'react'
 import Signup from '../components/Signup'
@@ -21,6 +22,9 @@ export default function Home({ types }) {
   const [typesOpen, setTypesOpen] = useState(false)
   const [products, setProducts] = useState([])
   const [messages, setMessages] = useState([])
+// Orders shit
+  const [ordersDatesOpen, setSearchOrdersOpen] = useState(false)
+
   let filterUrl = 'http://localhost:3000/api/product/filter?'
 
   // Type search
@@ -129,6 +133,11 @@ export default function Home({ types }) {
         {ordersOpen && <Order toggle={setOrdersOpen} user={user} />}
         {messagesOpen && <Messages toggle={setMessagesOpen} messages={messages} />}
         {typesOpen && <Type toggle={setTypesOpen} user={user} types={types} />}
+
+
+        {ordersDatesOpen && <SearchOrderDate toggle={setSearchOrdersOpen} user ={user} />}
+
+
         <div className={styles.container}>
           <Head>
             <title>Marketplace</title>
@@ -145,6 +154,14 @@ export default function Home({ types }) {
               <button onClick={() => setCreateProductOpen(true)}>Create Product</button>
               <button onClick={() => setOrdersOpen(true)}>Check Orders</button>
             </div>
+            
+
+
+            <div>
+              <button onClick={() => setSearchOrdersOpen(true)}>Check completed orders</button>
+            </div>
+
+
             <form>
               <h3>Selected Category</h3>
               <select id="category-input" onChange={event => handleCategory(event.target.value)}>

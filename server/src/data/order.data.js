@@ -57,14 +57,16 @@ const getAllOrdersData = async () => {
     }
 }
 
-// Hämtar orders i intervallet och sorterar
-const getOrdersDateRangeData = async (minDate, maxDate) => {
+// Hämtar orders i intervallet och sorterar, lägg till att endast accepted hämtas, lägg till user
+const getOrdersDateRangeData = async (user, minDate, maxDate) => {
     try {
         return await orderModel.find({
             orderDate: { 
                 $gte: minDate, 
                 $lte: maxDate 
-            }
+            },
+            status: 'Approved',
+            buyer: user
         })
         .sort({orderDate: 1})
     } catch {

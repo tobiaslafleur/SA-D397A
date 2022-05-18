@@ -24,8 +24,8 @@ router.get('/', async (req, res) => {
     res.send(response)
 })
 
-router.get('/date/:mindate/:maxdate', async (req, res) => {
-    const response = await getOrdersDateRange(req.params.mindate, req.params.maxdate)
+router.get('/date/', async (req, res) => {
+    const response = await getOrdersDateRange(req.params.user, req.params.mindate ,req.params.maxdate)
     res.send(response)
 })
 
