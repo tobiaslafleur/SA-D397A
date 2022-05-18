@@ -8,8 +8,6 @@ export default function Products({ toggle, user}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(user._id, ' ', mindate, ' ' , maxdate)
-        console.log(`http://localhost:3000/api/order/date/${user._id}/${mindate}/${maxdate}`)
         const res = await fetch(`http://localhost:3000/api/order/date/${user._id}/${mindate}/${maxdate}`)
         
         setOrders(await res.json())
