@@ -22,7 +22,7 @@ export default function Home({ types }) {
   const [typesOpen, setTypesOpen] = useState(false)
   const [products, setProducts] = useState([])
   const [messages, setMessages] = useState([])
-// Orders shit
+  // Orders shit
   const [ordersDatesOpen, setSearchOrdersOpen] = useState(false)
 
   let filterUrl = 'http://localhost:3000/api/product/filter?'
@@ -65,7 +65,7 @@ export default function Home({ types }) {
     let mes = []
 
     for (let i = 0; i < messages.length; i++) {
-      if (!messages[i].messageRead) mes.append(messages[i])
+      if (!messages[i].messageRead) mes.push(messages[i])
     }
 
     return mes
@@ -135,7 +135,7 @@ export default function Home({ types }) {
         {typesOpen && <Type toggle={setTypesOpen} user={user} types={types} />}
 
 
-        {ordersDatesOpen && <SearchOrderDate toggle={setSearchOrdersOpen} user ={user} />}
+        {ordersDatesOpen && <SearchOrderDate toggle={setSearchOrdersOpen} user={user} />}
 
 
         <div className={styles.container}>
@@ -154,7 +154,7 @@ export default function Home({ types }) {
               <button onClick={() => setCreateProductOpen(true)}>Create Product</button>
               <button onClick={() => setOrdersOpen(true)}>Check Orders</button>
             </div>
-            
+
 
 
             <div>

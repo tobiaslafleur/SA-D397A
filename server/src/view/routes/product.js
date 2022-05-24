@@ -14,7 +14,9 @@ const router = express.Router()
 
 // Add product for sale
 router.post('/', async (req, res) => {
+    console.log(req.body)
     const response = await createProduct(req.body)
+
     res.status(response.status).send(response)
 })
 

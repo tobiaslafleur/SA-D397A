@@ -7,7 +7,7 @@ export default function Products({ toggle, user, types }) {
     const [price, setPrice] = useState('')
     const [manufactured, setManufactured] = useState('')
     const [color, setColor] = useState('')
-    const [condition, setCondition] = useState('')
+    const [condition, setCondition] = useState('Like New')
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -21,6 +21,8 @@ export default function Products({ toggle, user, types }) {
             condition: condition,
             seller: user._id
         }
+
+        console.log(condition)
 
         const res = await fetch('http://localhost:3000/api/product/', {
             method: 'POST',
