@@ -1,0 +1,51 @@
+POST http://localhost:3000/api/types/
+Content-Type: application/json
+
+{
+    "name": "Computer"
+}
+
+###
+
+PATCH http://localhost:3000/api/types/6273b5e875c3010b8c991b5a
+Content-Type: application/json
+
+{
+    "_id": "6273b5e875c3010b8c991b5a",
+    "userId": "626fca3e78405c3b9fd3bf42"
+}
+
+###
+
+DELETE http://localhost:3000/api/types/627392df7de005040542cc35
+Content-Type: application/json
+
+{
+    "_id": "6273b5e875c3010b8c991b5a",
+    "subscribers": "username3"
+}
+
+###
+
+POST http://localhost:3000/api/order/
+Content-Type: application/json
+
+{
+    "seller": "Fisk-AB",
+    "buyer": "lille-lu",
+    "product": "Gädda"
+}
+
+###
+
+POST http://localhost:3000/api/user/
+Content-Type: application/json
+
+{
+    "firstName": "Lucas",
+    "lastName": "Eliasson",
+    "email": "lucas@lucaseliasson.se",
+    "address": "Hallarydsvägen",
+    "username": "lille-lu",
+    "password": "12345"
+}

@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import styles from '../../styles/Login.module.css'
+import styles from '../styles/Login.module.css'
+import Signup from './Signup'
 export default function Login(props) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -19,17 +20,23 @@ export default function Login(props) {
             },
             body: JSON.stringify(data)
         })
-        
+
         const result = await response.json()
-        if(result.auth) {
+        if (result.auth) {
             setUser(result.user)
             setLogin(true)
 
         } else setHidden(false)
     }
 
-    return ( 
+    const toggleSignUp = () => {
+        hidden = !hidden
+    }
+
+    return (
+        <>
         <div className={styles.container}>
+
             <h1 className={styles.title}>Log in</h1>
             <div className={styles.infocontainer}>
                 <p className={styles.info}>Username</p>
@@ -41,7 +48,7 @@ export default function Login(props) {
             </div>
             <p className={styles.error} hidden={hidden}>Incorrect credentials</p>
             <button className={styles.loginb} onClick={handleLogin}>Log in</button>
-            <button className={styles.signupb}>Sign up</button>
         </div>
+        </>
     )
 }

@@ -9,13 +9,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #121212;
+  background-color: #ffffff;
 }
 
-.footer {
+.products {
+  margin: 0 100px;
   display: flex;
-  flex: 1;
-  border-top: 1px solid #eaeaea;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 100px;
+}
+
+.searchField {
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 20px 0px;
 }

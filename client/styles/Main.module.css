@@ -1,6 +1,5 @@
 .container {
     padding: 64px;
-    height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -9,7 +8,7 @@
 }
 
 .title {
-    color: white;
+    color: black;
     opacity: 1;
     font-size: 3em;
 }
@@ -29,6 +28,6 @@
 }
 
 .text {
-    color: white;
+    color: black;
     margin: 8px;
 }

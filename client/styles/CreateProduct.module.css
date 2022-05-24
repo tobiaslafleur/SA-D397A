@@ -1,0 +1,38 @@
+.modalBackground {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalContainer {
+
+    padding: 20px;
+    background-color: white;
+    color: black;
+    text-align: center;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.label {
+    text-align: left;
+    display: block;
+}
+
+.input {
+    width: 100%;
+    display: block;
+    margin: 10px 0;
+}
+
+.submitButton {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.closeButton {
+    margin-top: 20px;
+    width: 100%;
+}
